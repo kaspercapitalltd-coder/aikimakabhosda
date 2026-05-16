@@ -1,4 +1,5 @@
 "use client"
+export const dynamic = 'force-dynamic'
 
 import Navbar from "@/components/layout/navbar"
 import Hero from "@/components/landing/Hero"

@@ -1,0 +1,6 @@
+{
+  "name": "The Capital Guru",
+  "description": "Institutional-grade luxury financial intelligence SaaS platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

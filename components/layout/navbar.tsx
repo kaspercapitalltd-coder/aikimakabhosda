@@ -1,11 +1,28 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase"
+import { User } from "@supabase/supabase-js"
 
 export default function Navbar() {
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -38,7 +55,7 @@ export default function Navbar() {
         {['Intelligence', 'Edge', 'Signal', 'Pricing', 'FAQ'].map((item) => (
           <Link 
             key={item} 
-            href={`#${item.toLowerCase()}`}
+            href={`/#${item.toLowerCase()}`}
             className="text-xs uppercase tracking-widest text-text-muted hover:text-gold-primary transition-colors font-medium"
           >
             {item}
@@ -47,12 +64,20 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Link href="/login" className="text-xs uppercase tracking-widest text-text-muted hover:text-white transition-colors font-medium">
-          Login
-        </Link>
-        <Button asChild variant="luxury" size="sm">
-          <Link href="/login">Apply Now</Link>
-        </Button>
+        {user ? (
+          <Button asChild variant="glow" size="sm" className="rounded-full">
+            <Link href="/admin">Dashboard</Link>
+          </Button>
+        ) : (
+          <>
+            <Link href="/login" className="text-xs uppercase tracking-widest text-text-muted hover:text-white transition-colors font-medium hidden sm:block">
+              Login
+            </Link>
+            <Button asChild variant="luxury" size="sm" className="rounded-full px-8">
+              <Link href="/login">Apply Now</Link>
+            </Button>
+          </>
+        )}
       </div>
     </motion.nav>
   )

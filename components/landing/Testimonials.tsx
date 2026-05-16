@@ -105,7 +105,7 @@ export default function Testimonials() {
               </div>
 
               <p className="text-text-secondary text-sm leading-relaxed mb-8 italic">
-                "{t.content}"
+                &quot;{t.content}&quot;
               </p>
 
               <div className="pt-6 border-t border-border-secondary/30 flex items-center justify-between">

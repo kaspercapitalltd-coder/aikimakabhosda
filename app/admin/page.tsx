@@ -1,4 +1,5 @@
 "use client"
+export const dynamic = 'force-dynamic'
 
 import { motion } from "framer-motion"
 import Image from "next/image"
@@ -17,7 +18,12 @@ const data = [
   { name: '23:59', yield: 3490, operatives: 4300 },
 ]
 
+import { signOut } from "@/app/auth/actions"
+
 export default function AdminDashboard() {
+  async function handleSignOut() {
+    await signOut()
+  }
   return (
     <div className="min-h-screen bg-black text-text-primary flex">
       <aside className="w-64 border-r border-border-secondary hidden lg:flex flex-col p-6 space-y-8 bg-background-secondary">
@@ -42,7 +48,10 @@ export default function AdminDashboard() {
         </nav>
 
         <div className="mt-auto pt-6 border-t border-border-secondary">
-           <button className="flex items-center gap-3 w-full px-4 py-3 text-xs uppercase tracking-widest text-red-500 hover:bg-red-500/10 rounded-lg transition-all">
+           <button 
+              onClick={handleSignOut}
+              className="flex items-center gap-3 w-full px-4 py-3 text-xs uppercase tracking-widest text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+            >
               <LogOut size={18} />
               Terminate Session
            </button>
@@ -102,7 +111,7 @@ export default function AdminDashboard() {
                </div>
             </div>
             <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="99%" height={300}>
                 <AreaChart data={data}>
                   <defs>
                     <linearGradient id="colorYield" x1="0" y1="0" x2="0" y2="1">

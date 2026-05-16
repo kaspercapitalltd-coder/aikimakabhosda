@@ -71,7 +71,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-text-muted max-w-2xl text-base md:text-xl leading-relaxed tracking-[0.4em] mb-14 uppercase"
         >
-          Decrypt the market's internal mechanics with zero-latency precision. High-frequency signals for elite operatives.
+          Decrypt the market&apos;s internal mechanics with zero-latency precision. High-frequency signals for elite operatives.
         </motion.p>
 
         <motion.div 

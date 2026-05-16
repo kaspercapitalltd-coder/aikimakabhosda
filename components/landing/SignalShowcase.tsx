@@ -93,7 +93,7 @@ export default function SignalShowcase() {
 
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse"></div>
-                <span className="text-[10px] text-text-muted uppercase tracking-widest">{signal.date} // T-GURU</span>
+                <span className="text-[10px] text-text-muted uppercase tracking-widest">{signal.date} {'//'} T-GURU</span>
               </div>
 
               <h4 className="text-xl font-bold text-white mb-1">{signal.pair}</h4>
